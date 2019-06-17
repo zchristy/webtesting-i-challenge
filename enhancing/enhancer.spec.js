@@ -10,4 +10,13 @@ describe('enhancer.js', () => {
       expect(repair({ durability: 100}).durability).toBe(100)
     })
   });
+
+  describe('succeed()', () => {
+    it('The enhancement increases by 1', () => {
+      expect(succeed({ enhancement: 0}).enhancement).toBe(1)
+      expect(succeed({ enhancement: -10}).enhancement).toBe(-9)
+      expect(succeed({ enhancement: 90}).enhancement).toBe(20)
+      expect(succeed({ enhancement: 20}).enhancement).toBe(20)
+    })
+  });
 });
