@@ -26,7 +26,6 @@ function fail(item) {
       return { ...item, durability: durability - 10 }
     }
   }
-  return { ...item };
 }
 
 function repair(item) {
@@ -34,5 +33,17 @@ function repair(item) {
 }
 
 function get(item) {
-  return { ...item };
+  const { enhancement, name } = item
+
+  if(enhancement === 0) {
+    return { ...item };
+  } else if(enhancement > 0) {
+    if(enhancement > 20) {
+      return { ...item, name: `[+20] ${name}` };
+    } else {
+      return { ...item, name: `[+${enhancement}] ${name}` };
+    }
+  } else {
+    return { ...item, name: `[${enhancement}] ${name}` };
+  }
 }

@@ -21,11 +21,20 @@ describe('enhancer.js', () => {
   });
 
   describe('fail()', () => {
-    it('The enhancement is changed to respected value', () => {
+    it('The durablity or enhancement is changed to respected value based on enhancement values', () => {
       expect(fail({ enhancement: 0, durability: 0}).durability).toBe(-5)
       expect(fail({ enhancement: -10, durability: -10}).durability).toBe(-15)
-      expect(fail({ enhancement: 15, durability: 15}).durability).toBe(5)
-      expect(fail({ enhancement: 17}).enhancement).toBe(16)
+      expect(fail({ enhancement: 16, durability: 15}).durability).toBe(5)
+      expect(fail({ enhancement: 17, durability: 15})).toEqual({enhancement: 16, durability: 5})
+    })
+  });
+
+  describe('get()', () => {
+    it('The name is changed based on enhancement value', () => {
+      expect(get({ enhancement: 0, name: 'zach'}).name).toBe('zach')
+      expect(get({ enhancement: 20, name: 'zach'}).name).toBe('[+20] zach')
+      expect(get({ enhancement: -4, name: 'zach'}).name).toBe('[-4] zach')
+      expect(get({ enhancement: 100, name: 'zach'}).name).toBe('[+20] zach')
     })
   });
 });
