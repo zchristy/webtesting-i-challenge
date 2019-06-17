@@ -19,4 +19,13 @@ describe('enhancer.js', () => {
       expect(succeed({ enhancement: 20}).enhancement).toBe(20)
     })
   });
+
+  describe('fail()', () => {
+    it('The enhancement is changed to respected value', () => {
+      expect(fail({ enhancement: 0, durability: 0}).durability).toBe(-5)
+      expect(fail({ enhancement: -10, durability: -10}).durability).toBe(-15)
+      expect(fail({ enhancement: 15, durability: 15}).durability).toBe(5)
+      expect(fail({ enhancement: 17}).enhancement).toBe(16)
+    })
+  });
 });

@@ -15,11 +15,21 @@ function succeed(item) {
 }
 
 function fail(item) {
+  const { enhancement, durability } = item
+
+  if(enhancement < 15) {
+    return { ...item, durability: durability - 5 }
+  } else if (enhancement >= 15) {
+    if(enhancement > 16) {
+      return { ...item, enhancement: enhancement -1, durability: durability - 10 }
+    } else {
+      return { ...item, durability: durability - 10 }
+    }
+  }
   return { ...item };
 }
 
 function repair(item) {
-
   return {...item, durability: 100}
 }
 
